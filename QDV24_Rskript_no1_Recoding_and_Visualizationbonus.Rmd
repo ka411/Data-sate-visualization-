@@ -1,0 +1,1089 @@
+---
+title: "QDV23_Rskript_no1_Visual_and_Recode"
+output: html_document
+editor_options: 
+  markdown: 
+    wrap: 72
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# R exercise 1: Recoding and Visualizing Data
+
+In today's exercise document, you will cover important basics for all
+subsequent exercises. You may feel overwhelmed, simply because this exercise is quite long. Fear not, it is not that difficult. It is just that we cover a lot of basics in one exercise. You will need these basics in all subsequent exercises. So, it is worth it to take your time and work through this exercise carefully. All subsequent exercises will be shorter.
+This time you will learn about: 
+ * visualizing data, using different diagram types and style options (e.g. ggplot2) 
+ * realizing that there is an almost infinite way of visualizing data, and starting to 
+ * search resources for additional inspiration 
+ * think about the best way to visualize your data for a given problem and audience 
+ * develop your own style 
+ * recoding data, i.e. creating new variables from existing ones. 
+ * This is a very important step in data preparation, and you will need it in almost every exercise. 
+ * Often, recoding is its own form of analysis, e.g. when you create a new variable from text data (sentiment) 
+ * A first bonus point exercise 
+ * The first presentation homework, for one of you. (but you may want to look at it to seed what will be required when your time comes)
+
+# PART 1: visualizing the qkitch dataset
+
+##preparation
+
+We start again by reading in the qkitch dataset. Remember to tell R
+where the file is, or set your working directory accordingly. Here we
+load the file qkitch.csv
+
+```{r}
+rm(list=ls()) # clears the workspace
+
+dataset1 <- read.csv("qkitch.csv", sep=",", dec=".") #we read the CSV file and write it to the "dataset" object. It is an "English" file, i.e. decimal numbers have decimal points (not commas). For this we specify the reading with dec ="."
+
+```
+
+Remember, the qkitch dataset is a dataset of quarterly kitchen appliance
+sales. It has 24 observations (24 quarters, so 6 years) and 8 variables
+(columns): 
+ * sales: the quarterly sales of a kitchen appliance in money. 
+ * prom: the quarterly promotional discounts in %. 
+ * adv: the quarterly promotional reach in Gross Rating Points (GRP) 
+ * index: a quarterly economic sector index (economic situation relative to 100) 
+ * q1: quarter 1 (1 in quarter 1, 0 otherwise) 
+ * q2: quarter 2 
+ * q3:quarter 3 
+ * q4: quarter 4
+
+## basic plots
+
+With a few basic commands we can immediatly visualizing: For example,
+the plot() command creates a coordinate system between 2 variables. If
+you use only one variable, it interprets the x axis as the observation
+number (1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,...). THis can be used to
+plot time series.
+
+### Line chart with plot()
+
+```{r}
+
+# The "plot()" command spans a coordinate system between 2 variables.
+# A first examples with dataset 1, Y-axis is sales, X-axis is time(observation):
+
+plot(1:NROW(dataset1),dataset1$sales) # plot of sales over time.
+
+```
+
+This plot is not very nice to look at. It does not even look like a time
+series. We can change that by adding a "type" argument to the plot
+command. The type argument can be "p" for points, "l" for lines, "b" for
+both, "c" for step function, "o" for overplotted, "h" for histogram-like
+(vertical lines), "s" for steps, "S" for steps (alternate), "n" for no
+plotting.
+
+Let us try the line chart:
+
+```{r}
+
+plot(1:NROW(dataset1),dataset1$sales, type = "l") # same plot of sales over time, but as line chart
+plot(1:NROW(dataset1),dataset1$sales, type = "l", main="line chart", xlab="time",ylab="sales") #same, with labels
+
+
+```
+
+This looks much better. Especially, if we also try to add some labels to
+the plot. The main argument adds a title, the xlab and ylab arguments
+add labels to the axes.
+
+Why don't you give it a try, and use a combination of line and points?
+(type = "b")
+
+```{r}
+
+# your code
+library(googleLanguageR)
+
+
+gl_auth("C:\Users\fahad computer\Documents\BONUS-exercises -gt R Stuff R scripts, and datasets-20241015")  # Update this path
+
+# Read in the dataset
+dataset2_eng <- read.csv("C:\Users\fahad computer\Documents\BONUS-exercises -gt R Stuff R scripts, and datasets-20241015") 
+
+
+dataset2_eng$descriptionclean <- gsub("[^[:alnum:][:space:]]", "", dataset2_eng$description)  # Removing special characters
+
+
+write.table(dataset2_eng$descriptionclean, "descriptionclean.txt", sep = "\t", row.names = FALSE, col.names = FALSE, quote = FALSE)
+
+
+translated_descriptions <- gl_translate(dataset2_eng$descriptionclean, target = "en") 
+
+dataset2_eng$descriptionclean_en <- translated_descriptions$translatedText 
+
+head(dataset2_eng)
+
+
+write.csv(dataset2_eng, "C:\Users\fahad computer\Documents\BONUS-exercises -gt R Stuff R scripts, and datasets-20241015", row.names = FALSE)  
+```
+
+### Scatter plot with plot()
+
+Now let us try a scatter plot. For this we need two variables, one for
+the x-axis, one for the y-axis. Let us use sales and advertising GRP:
+
+```{r}
+
+#And here is a scatter plot, y-axis is still sales, x-axis is now advertising reach:
+plot(dataset1$adv,dataset1$sales, main="scatter plot", xlab="Advertising (in GRP)",ylab="Sales (in MONEY)")
+
+
+```
+
+Nice. We create these quick scatter plots to check for a relationship
+between two variables. Here we see some evidence for a positive
+relationship between advertising and sales. The more advertising, the
+more sales. But we will look at this in more detail later.
+
+But before that, could you create a scatterplot with sales (y) over
+promotional discounts (x)?
+
+```{r}
+# your code
+### Scatter plot with plot()
+
+
+plot(dataset1$adv, dataset1$sales, main="Scatter Plot: Sales vs. Advertising", xlab="Advertising (in GRP)", ylab="Sales (in MONEY)")
+
+
+plot(dataset1$promotional_discount, dataset1$sales, main="Scatter Plot: Sales vs. Promotional Discounts", 
+     xlab="Promotional Discounts", ylab="Sales (in MONEY)", pch=19, col=dataset1$category) 
+
+```
+
+### Histograms with hist()
+
+Another quick visualization that we should always consider are
+histograms. They show the distribution of a variable. Histograms are a
+very useful tool to get a first impression of a variable. Let us try it
+with sales:
+
+```{r}
+hist(dataset1$sales, main="Histogram of sales", xlab="Sales (in MONEY)",ylab="Frequency")
+```
+
+You can see, for example, that sales are not normally distributed. They
+are skewed to the right. This means that there are more observations
+with low sales than with high sales. This is a very common pattern in
+sales data.
+
+How is advertising distributed? Try it out:
+
+```{r}
+# your code
+
+hist(dataset1$sales, main="Histogram of Sales", xlab="Sales (in MONEY)", ylab="Frequency")
+
+hist(dataset1$adv, main="Histogram of Advertising", xlab="Advertising (in GRP)", ylab="Frequency", col="lightblue", border="black")
+
+```
+
+Taken together, these type of quick basic plots are very useful to get a
+first impression of the data. They are also very useful to check for
+errors in the data. For example, if you see a negative value in a
+histogram of sales, you know that there is an error in the data.
+
+As a lesson for later: when you familiarize yourself with a dataset: 
+ * always check the histograms of all variables 
+ * check for many scatter plots between variables, so that you get an idea what is related to what
+ * check for trends and seasons in line charts (if there is a time dimension or variable in the data)
+
+# PART 2: visualizing the qkitch dataset with ggplot2 (in tidyverse)
+
+Unfortunately, the basic plots in R at not particularly nice to look at.
+They are also not very flexible. For example, you cannot easily change
+the colors, or the size of the points, or the size of the labels.
+
+For this reason, there is a powerful package ggplot2 that allows you to
+create much nicer plots. It is part of the tidyverse, so we need to load
+the tidyverse first (assuming that you have already installed that
+package):
+
+```{r}
+if(!require(tidyverse)){install.packages("tidyverse")} #We download and install the package, if we haven't already done so
+library(tidyverse) #We load the package, otherwise R does not know the tidyverse commands
+
+```
+
+## ggplot2 resources and links
+
+ggplot2 graphics are very powerful. For resources, use:
+
+ * a ggplot2 cheat sheet: <https://lscholtus.gitlab.io/mosaicdata/ggplot2-cheatsheet-2.0.pdf>
+ * the ggplot2 documentation: <https://ggplot2.tidyverse.org/reference/index.html>
+ * the ggplot2 book (free online version): <https://ggplot2-book.org/>
+ * many nice examples for ggplot2: <https://r-graph-gallery.com/index.html>
+
+Seriously, especially the latter link, the gallery, is a go-to starting
+point for me in my work. I often look for a plot that is similar to what
+I want to do, and then I copy the code and adapt it to my needs.
+
+### redo the scatter plots with ggplot()
+
+Now, lets's see what we could do to our dataset plots with some serios
+package. Start with the scatterplot of sales and advertising:
+
+In ggplot2, the plots can be extended and modified by simply adding
+addional commands. This way, you can start basic, and then add more and
+more (or nicer and nicer) elements to the plot.
+
+```{r}
+
+#The same scatter plot again; 
+ggplot(dataset1, aes(x=adv,y=sales))
+# --> Oh, it's just the axes. We need to add more elements to the plot.
+
+
+
+# Again the same scatter plot, but now with data points
+ggplot(dataset1, aes(x=adv,y=sales)) + #with + you signal that the next element is coming
+  geom_point() #it adds points (scatter plot)
+# --> now we are going somewhere. But I don't like the background. Let's change that.
+
+
+
+# Again the same scatter plot, but now with data points
+ggplot(dataset1, aes(x=adv,y=sales)) + 
+  geom_point() + #it adds points (scatter plot)
+  theme_classic() # a display style, also try theme_minimal()?
+# --> nice. but I want to add labels to the plot.
+
+
+# Again the same scatterplot, now also with labels
+ggplot(dataset1, aes(x=adv,y=sales)) + 
+  theme_classic() + 
+  geom_point()+
+    labs(title="scatterplot with labels", #add the labels
+       subtitle="this is a great subtitle", 
+       y="sales (in MONEY)", 
+       x="Advertising (in GRP)", 
+       caption="source: qkitch dataset")
+
+
+```
+
+Click through the four plots. see how it evolves, everytime we add a new
+element to the plot?
+
+There are even some analysis tools that we can add to the plot. For
+example, we can add a linear regression line to the plot (as discussed
+in detail in later lectures and exercises):
+
+```{r}
+
+
+
+# Again the same scatter plot, now also with a balancing line through the points
+ggplot(dataset1, aes(x=adv,y=sales)) + 
+  theme_classic() + 
+  geom_point()+
+  geom_smooth(method="lm", se=F)+ #add a compensation line, based on a linear model (lm: that is regression)
+   labs(title="Scatterplot with straight line", #add the caption
+       subtitle="this is a great subtitle", 
+       y="Sales (in MONEY)", 
+       x="Advertising (in GRP)", 
+       caption="source: qkitch dataset")
+```
+
+Now it's your turn again. Can you output the Sales scatterplot over the
+second variable (the promotion measures: prom)?
+
+```{r}
+# Here is space for your code
+
+```
+
+### Distribution plots in ggplot: histograms, density plots, boxplots
+
+Now we want to create a histogram of sales. In ggplot2, this is done this way:
+
+```{r}
+# Histogramm
+ggplot(dataset1, aes(x=sales)) + 
+  theme_classic() + 
+  geom_histogram()+
+   labs(title="Histogram of Sales", #add the caption
+       subtitle="this is a great subtitle", 
+       y="Frequency", 
+       x="Sales (in MONEY)", 
+       caption="source: qkitch dataset")
+
+# nice. but maybe we want to have only a few, larger bins for the histogram:
+ggplot(dataset1, aes(x=sales)) + 
+  theme_classic() + 
+  geom_histogram(bins=7)+ #here, you can specify the number of bins, or even the bin width
+   labs(title="Histogram of Sales with 7 bins", 
+       subtitle="this is a great subtitle", 
+       y="Frequency", 
+       x="Sales (in MONEY)", 
+       caption="source: qkitch dataset")
+
+
+```
+
+You can also create a density plot, which is a smoothed version of the histogram:
+
+```{r}
+# Density plot
+ggplot(dataset1, aes(x=sales)) + 
+  theme_classic() + 
+  geom_density()+
+   labs(title="Density plot of Sales", 
+       subtitle="this is a great subtitle", 
+       y="Density", 
+       x="Sales (in MONEY)", 
+       caption="source: qkitch dataset")
+
+```
+This looks nice, but sometimes can be misleading if your sample is actually rather small. In that case, you can combine both and add a histogram to the density plot:
+
+```{r}
+# Density plot with histogram
+ggplot(dataset1, aes(x=sales)) + 
+  theme_classic() + 
+  geom_density()+
+  geom_histogram(aes(y=..density..), alpha=0.4)+
+   labs(title="Density plot of Sales", 
+       subtitle="this is a great subtitle", 
+       y="Density", 
+       x="Sales (in MONEY)", 
+       caption="source: qkitch dataset")
+
+#let us save this plot for later
+
+plot1 <- last_plot()
+
+```
+
+Finally, you can also create a boxplot. A boxplot is a very useful tool to visualize the distribution of a variable. It shows the median, the interquartile range, and the outliers of a variable. 
+
+```{r}
+# Boxplot
+ggplot(dataset1, aes(x=sales)) + 
+  theme_classic() + 
+  geom_boxplot()+
+   labs(title="Boxplot of Sales", 
+       subtitle="this is a great subtitle", 
+       y="Sales (in MONEY)", 
+       x="Sales", 
+       caption="source: qkitch dataset")
+
+```
+Now it is your turn again. Can you create a distribution visualization of the economic index variable? You can pick any of the three types of plots (histogram, density plot, boxplot).
+
+```{r}
+# Here is space for your code
+
+ggplot(dataset1, aes(x=economic_index)) +
+  theme_classic() + 
+  geom_histogram(bins=10, fill="lightgreen", color="black") + 
+  
+  labs(title="Histogram of Economic Index", 
+       subtitle="this is a great subtitle", 
+       y="Frequency", 
+       x="Economic Index", 
+       caption="source: qkitch dataset")
+
+```
+
+
+
+### Comparison plots: bar charts, grouped boxplots, etc.
+
+Very often, we want to compare the values of a variable across different groups. For example, we want to compare the sales in different quarters of the year. In that case, we can use a bar chart:
+
+```{r}
+
+dataset1 <- dataset1 %>% mutate(quarter = as.factor( q1*1+q2*2+q3*3+q4*4) )
+# mutate() creates a new variable "quarter" that is the sum of the quarters (1,2,3,4) times the quarter variable (0 or 1)
+# we use as factor to tell r that this is a grouping variable (and not a numeric variable)
+
+
+# Bar chart
+ggplot(dataset1, aes(x=quarter,y=sales)) + 
+  theme_classic() + 
+  geom_bar(stat="identity")+
+   labs(title="Bar chart of Sales", 
+       subtitle="this is a great subtitle", 
+       y="Sales (in MONEY)", 
+       x="Quarter", 
+       caption="source: qkitch dataset")
+
+
+#nice. Lets make the bars a bit narrower, and add some color:
+ggplot(dataset1, aes(x=quarter,y=sales)) + 
+  theme_classic() + 
+  geom_bar(stat="identity", width=0.5, fill="darkblue")+
+   labs(title="Bar chart of Sales", 
+       subtitle="this is a great subtitle", 
+       y="Sales (in MONEY)", 
+       x="Quarter", 
+       caption="source: qkitch dataset")
+
+# OK, how about we flip the chart and make it a horizontal bar chart? 
+# And also only show the mean sales per quarter?
+ggplot(dataset1, aes(x=quarter,y=sales)) + 
+  theme_classic() + 
+  coord_flip()+                   #changes the orientation
+  stat_summary(fun.y = "mean", geom = "bar", fill = "red", width = 0.5)+ #calculates the mean and plots it as a bar
+   labs(title="Bar chart of quarterly Sales", 
+       subtitle="this is a great subtitle", 
+       y="Mean quarterly Sales (in MONEY)", 
+       x="Quarter", 
+       caption="source: qkitch dataset")
+
+
+```
+See how we change what is displayed (a sum of all slaes in all respective quarters versus the quarterly mean across years), the color, and the orientation of the plot?
+
+Apparently, we sell fewer kitchen appliances in quarter 4. Maybe we should look into that.
+
+Let's check with a boxplot:
+
+```{r}
+# Boxplot of sales per quarter
+ggplot(dataset1, aes(x=quarter,y=sales)) + 
+  theme_classic() + 
+  geom_boxplot()+
+   labs(title="Boxplot of quarterly Sales", 
+       subtitle="this is a great subtitle", 
+       y="Sales (in MONEY)", 
+       x="Quarter", 
+       caption="source: qkitch dataset")
+
+
+
+# end code
+```
+Well, it does not look that much different in data range, only in the distribution of the data.
+Maybe we can use another way to add the actual data to the plot?
+
+
+```{r}
+# here is an even more detailed variant of a boxblot that also shows the individual data points (with a bit of jitter):
+
+# This is based on an add-on package called ggpubr (which stands for "publication-ready plots")
+if(!require(ggpubr)){install.packages("ggpubr")} #We download and install the package, if we haven't already done so
+library(ggpubr) #We load the package, otherwise R does not know the tidyverse commands
+
+# build a ggboxplot of sales for each quarter, and add the individual data points with a bit of jitter
+ggboxplot(dataset1, x = "quarter", y = "sales",  add = "jitter") +
+   labs(title="Boxplot of quarterly Sales", 
+       subtitle="this is a great subtitle", 
+       y="Sales (in MONEY)", 
+       x="Quarter", 
+       caption="source: qkitch dataset")
+
+
+# save this plot as a variable for later
+plot2 <- last_plot()
+
+
+```
+
+We see that it is only very few datapoints that are responsible for the difference in the boxplot. Maybe we should not read too much into the difference.
+
+Now its your turn again. Can you create a bar chart of the economic index variable, grouped by the quarter variable? You can use the code from above and just change the variable names.
+
+```{r}
+# Here is space for your code
+# Here is space for your code
+
+
+ggplot(dataset1, aes(x=quarter, y=economic_index)) + 
+  
+  theme_classic() + 
+  geom_bar(stat="identity", width=0.5, fill="skyblue") + 
+  
+  labs(title="Bar chart of Economic Index", 
+       subtitle="This is a great subtitle", 
+       y="Economic Index", 
+       x="Quarter", 
+       caption="Source: qkitch dataset")
+
+
+```
+
+
+## several plots in one figure
+
+Sometimes, we want to show several plots in one figure. For example, we want to show the distribution of sales in each quarter in one figure. We can do this with the facet_wrap() function. We specify the variable we want to use to group the plots (e.g., quarter) and the number of columns we want to have (e.g., 2). 
+
+```{r}
+# several plots in one figure
+ggplot(dataset1, aes(x=sales)) + 
+  theme_classic() + 
+  geom_histogram(bins=20)+
+  facet_wrap(~quarter, ncol=2)+
+   labs(title="Histogram of Sales", 
+       subtitle="this is a great subtitle", 
+       y="Count", 
+       x="Sales", 
+       caption="source: qkitch dataset")
+
+```
+But maybe, we want to show completely different plots side by side.
+Here, we could use the grid.arrange() function from the gridExtra package. We specify the plots we want to show in the order we want to show them. We can also specify the number of columns and rows we want to have. 
+
+```{r}
+
+#### several plots ####
+
+if(!require(gridExtra)){install.packages("gridExtra")}; 
+library(gridExtra)
+#this package is not part of the tidyverse, so we need to install and load it separately
+
+
+plot.total <- grid.arrange(plot1, plot2, nrow=1, ncol=2) #arrange and save this plot for later, here last_plot() does not work
+
+
+
+# end code
+```
+
+## saving as png
+
+Finally, we want to find a way to save our plots. We can do this with the ggsave() function. We can specify the name of the file, the plot we want to save, the format (e.g., png), the dpi (dots per inch, the higher the better), the width and height of the plot, and the units (e.g., inches).
+
+
+```{r}
+# save as png
+
+plot.total
+ggsave("myplot.png", plot = plot.total, device = "png", dpi = 600, width = 20, height = 10, units = "cm", limitsize = FALSE)
+
+# this saves the plot in the working directory (the folder where your R project is located).
+# you can specify the format, the dpi, the width and height, and the units (e.g., inches/cm) of the plot
+
+```
+
+## Saving the global environment (including all data) as an RData file
+
+Finally, we may want to save everything done so far (the whole global environment), such that we can later import it again and start working withit, without having to run all the code again. We can do this with the save.image() function. We specify the name of the file we want to save.
+
+```{r}
+# save the global environment as an RData file
+save.image("mydata.RData")
+
+```
+
+
+
+
+
+# PART 3: Coding and Recoding (and cleaning) in a new dataset
+
+
+## New data (from product test)
+
+Now a new data set is introduced, with which they are to work here
+with. Please download the dataset (ProdukttestSauceData.csv)
+and save it in the same folder as the script.
+script.
+
+The data comes from a (real) product test before a planned
+market launch. It was about a new type of seasoning and dessert sauce.
+
+### Read in the dataset
+
+The product test was run in Germany, hence the dataset is a German one
+German one. The decimal separator is a comma, the variable names are German
+When reading German data, there can always arise trouble with correctly reading "umlauts" like ä, ö , ü, or ß. We can avoid this by specifying the encoding of the data. In this case, we use "latin1" as encoding. (at least this works on my machine)
+
+
+```{r}
+dataset2 <- read.csv("ProdukttestSauceData.csv", sep=",", dec=".", encoding = "latin1") #we read the CSV file and write it to the object "dataset". 
+
+```
+
+Have a look at the dataset. You see there are
+variables of different scale levels.
+
+Can you guess from the dataset how each question in the questionnaire was measured?
+questionnaire were measured?
+
+
+###Rename variables
+
+Maybe we should first rename the data.
+
+```{r}
+
+dataset2_eng <- dataset2 %>% rename(
+  id = Nr,
+  age = Alter,
+  sex = Geschlecht,
+  job = Beruf,
+  education = Ausbildung,
+  description = Beschreibung,
+  ProductImpression = Eindruck,
+  PurchaseIntention = Kauf,
+  
+)
+
+
+
+```
+
+Can you now try to answer the following questions:
+
+- What kind of scale was used to measure the variable "ProductImpression"?
+- What kind of scale was used to measure the variable "PurchaseIntention"?
+- What does the variable "ProductImpression" mean?
+
+Maybe you need to view the dataset, or plot some of the variables to answer these questions:
+
+```{r}
+# code here
+
+```# Read in the dataset
+dataset2 <- read.csv("ProdukttestSauceData.csv", sep=",", dec=".", encoding = "latin1") 
+
+head(dataset2)
+
+
+str(dataset2)
+
+
+summary(dataset2)
+
+# Rename variables for easier access
+dataset2_eng <- dataset2 %>% rename(
+  id = Nr,
+  age = Alter,
+  sex = Geschlecht,
+  job = Beruf,
+  education = Ausbildung,
+  description = Beschreibung,
+  ProductImpression = Eindruck,
+  PurchaseIntention = Kauf
+)
+
+# Plotting the ProductImpression variable
+ggplot(dataset2_eng, aes(x = ProductImpression)) + 
+  theme_classic() + 
+  geom_bar(fill = "lightblue") + 
+  labs(title = "Distribution of Product Impression", 
+       x = "Product Impression", 
+       y = "Count", 
+       caption = "Source: ProdukttestSauceData.csv")
+
+
+## Recoding into new variable
+
+The variable "PurchaseIntention" is currently only stored as a categorical variable. However, it is actually measured on an ordinal scale. We transform the variable into a numerical, ordinal variable ("PInumeric"):
+```{r}
+
+dataset2_eng <- dataset2_eng %>% mutate(
+  PurchaseNumeric = recode(PurchaseIntention,
+    "ja" = 5,
+    "wahrscheinlich" = 4,
+    "unsicher" = 3,
+    "wahrscheinlich_nicht" = 2,
+    "nein" = 1
+  )
+)
+
+```
+
+We can also go one step further and perform a purchase probability transformation, which we will also address in the lecture. Here, each response is assigned a purchase probability from empirical values of extant studies (e.g., from NIELSEN). E.g. the answer the answer "ja" is assigned the purchase probability 75% (or 0.75), the answer "wahrscheinlich" is only the purchase probability 25%. The other answers are assigned even lower values. Let's code another variable with the purchase probability ("PurchaseProbability"):
+
+
+```{r}
+
+dataset2_eng <- dataset2_eng %>% mutate(
+  PurchaseProbability = recode(PurchaseIntention,
+    "ja" = 0.75,
+    "wahrscheinlich" = 0.25,
+    "unsicher" = 0.1,
+    "wahrscheinlich_nicht" = 0.05,
+    "nein" = 0.01
+  )
+)
+
+```
+
+How are these variables distributed? Let's plot them:
+
+```{r}
+#your code here
+
+dataset2_eng <- dataset2_eng %>% mutate(
+  PurchaseNumeric = recode(PurchaseIntention,
+    "ja" = 5,
+    "wahrscheinlich" = 4,
+    "unsicher" = 3,
+    "wahrscheinlich_nicht" = 2,
+    "nein" = 1
+  ),
+  PurchaseProbability = recode(PurchaseIntention,
+    "ja" = 0.75,
+    "wahrscheinlich" = 0.25,
+    "unsicher" = 0.1,
+    "wahrscheinlich_nicht" = 0.05,
+    "nein" = 0.01
+  )
+)
+
+library(ggplot2)
+library(gridExtra)
+
+# Plotting the PurchaseNumeric variable
+plot_numeric <- ggplot(dataset2_eng, aes(x = PurchaseNumeric)) + 
+  theme_classic() + 
+  geom_bar(fill = "lightblue", color = "black") + 
+  labs(title = "Distribution of Purchase Numeric", 
+       x = "Purchase Numeric", 
+       y = "Count", 
+       caption = "Source: ProdukttestSauceData.csv")
+
+# Plotting the PurchaseProbability variable
+plot_probability <- ggplot(dataset2_eng, aes(x = PurchaseProbability)) + 
+  theme_classic() + 
+  geom_bar(fill = "lightgreen", color = "black") + 
+  labs(title = "Distribution of Purchase Probability", 
+       x = "Purchase Probability", 
+       y = "Count", 
+       caption = "Source: ProdukttestSauceData.csv")
+
+# Arranging both plots side by side
+grid.arrange(plot_numeric, plot_probability, nrow = 1, ncol = 2)
+
+
+```
+
+## Cleaning the free responses (variable: Beschreibung)
+
+The variable "Beschreibung" (now description) contains free text responses. When you work with free text, you should always try to clean the data first.
+
+Here, we do it by hand:
+
+```{r}
+
+#Create new text variable in the dataset
+
+#Go through the data, word by word, and replace the words that are misspelled or written in a different way than intended.
+
+dataset2_eng$descriptionclean <- dataset2_eng$description
+
+dataset2_eng$descriptionclean <- sub("aaber"," aber", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("überflüßig","überflüssig", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("erstmalnachdenken","erstmal nachdenken", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- gsub("geschmack","Geschmack", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- gsub("produkt","Produkt", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("mihc","mich", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("verweinert","verfeinert", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("Herlich","Herrlich", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("immernoch","immer noch", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("Interesantes","interessantes", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("einsetztbar","einsetzbar", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("SUPERLECKER","super lecker", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("viel seitig","vielseitig", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("Speißen","Speisen", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("PRodukt","Produkt", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("keine Sosse, dein Dip","keine Soße, kein Dip", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("für mich icht so toll","für mich nicht so toll", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("Spass","Spaß", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("vielfälliges","vielfältiges", dataset2_eng$descriptionclean) 
+
+dataset2_eng$descriptionclean <- sub("leckerrr","lecker", dataset2_eng$descriptionclean) 
+
+```
+
+## Creating a translated version of the variable
+
+We can also create a translated version of the variable "descriptionclean" using the googleLanguageR package. This is a very useful package for translating text. You can also use it to translate entire documents. However, it comes at a cost and you need to sign up for a google cloud account.
+
+Here, for this course, we'll try a free workaround.
+For this, we save the cleaned variable as a text file and then copy-paste it to google translate, or to DeepL. We then copy-paste the translated version into a new text file and upload it back to R. This is not the most elegant solution, but it works.
+
+Note, that you may copy-paste only limited number of characters, so you may have to do it several times. This is the price for free services...
+
+```{r}
+#Save the cleaned variable as a text file
+write.table(dataset2_eng$descriptionclean, "descriptionclean.txt", sep = "\t", row.names = FALSE, col.names = FALSE)
+  
+#Upload the text file to DeepL and download the translated version
+#Upload the translated version to R
+descriptionclean_en <- read.table("descriptclean_eng.txt", sep = "\t", header = FALSE)
+dataset2_eng$descriptionclean_en <- descriptionclean_en$V1
+
+```
+
+# PART 4: Sentiment analysis of the descriptions
+
+Now we want to use several principles of recoding to perform a sentiment analysis. As data we use the open text field "description" in the product data set. No, better we use the cleaned text in the variable "descriptionclean". Here the product testers should formulate briefly what they think of the tested product. To create a sentiment variable (i.e., how positive or negative the description is), some steps have to be completed.   
+
+## Sentiment, step1 - tokenize the text
+
+First, we tokenize the text. Tokenization means that we break down the text into individual words, remove upper and lower case.
+
+```{r}
+
+dataset2.tokenized_ger <- tidytext::unnest_tokens(dataset2_eng, word, descriptionclean) # tokenizing: the text is broken down into individual words, upper and lower case is removed.
+
+
+#lets check the result:
+count(dataset2.tokenized_ger, word, sort = TRUE) # here we can count the frequencies of the words and look at them in a table sorted by frequency.
+
+```
+As you can see, many of the most common words in the German text, e.g. "und", "is",
+"ich", etc. are not very helpful in sentiment determination. We
+refer to such quasi superfluous words as "stopwords". With the help of
+a list of typical stopwords in the German language, we can filter out the
+filter out the corresponding words.
+
+But first, lets tokenize the translated text, too
+
+```{r}
+#and again for the translated version:
+dataset2.tokenized_eng <- tidytext::unnest_tokens(dataset2_eng, word, descriptionclean_en) 
+
+count(dataset2.tokenized_eng, word, sort = TRUE)
+```
+
+Again, the most common words are not helpful ("and", "the", "I", etc.). We can filter them out using a list of English stopwords.
+
+## Sentiment, step2 - remove stopwords
+
+```{r}
+require("stopwords")
+#List of German stopwords:
+stopwordsG = data.frame(word = stopwords::stopwords("de")) 
+
+
+#clean stopwords from the tokenized text
+dataset2.clean.ger <- anti_join(dataset2.tokenized_ger, stopwordsG) #Here we use one of the many helpful commands from the dplyr package: anti_join(). This deletes the words in the data set that are also in the stopword list.
+
+# now for the english version:
+
+
+#List of English stopwords:
+stopwordsE = data.frame(word = stopwords::stopwords("en")) 
+
+dataset2.clean.eng <- anti_join(dataset2.tokenized_eng, stopwordsE)
+
+
+```
+
+## Sentiment, step3 - sentiment analysis using a dictionary
+
+Now we have a list of words used in the description, which may allow a comparison with a sentiment dictionary. That is a list of words to which a sentiment_value (or depending on the dictionary an emotion or something else) is assigned.
+
+For the German disctionary, we use a publicly availabe Lexikon:
+(<https://wortschatz.uni-leipzig.de/de/download>; Quelle: R. Remus, U.
+Quasthoff & G. Heyer: SentiWS - a Publicly Available German-language
+Resource for Sentiment Analysis. In: Proceedings of the 7th
+International Language Resources and Evaluation (LREC'10), pp.
+1168-1171, 2010)
+
+
+Load the German dictionary:
+
+```{r}
+sentiws <- read.csv("https://osf.io/x89wq/?action=download")
+
+```
+
+Recode the sentiment values to the respective words:
+
+```{r}
+
+df.sen.G <- inner_join(sentiws,dataset2.clean.ger,  by =("token"="word"))
+#This new dataset has a sentiment value ("value") for each word, as well as a #classification into positive/negative ("neg_pos")
+
+```
+
+Just out of curiosity, we can look at which of the words were actually assigned sentiment (and how much): To do this, we plot the words and the sentiment values (value).
+
+
+```{r}
+unique.words <- unique(df.sen.G[,c("word","value")])
+
+unique.words$word <- reorder(unique.words$word, unique.words$value) #sort by value
+
+ggplot(unique.words, aes(x=word,y=value)) + 
+  theme_classic() + 
+  geom_col(stat = min) +
+  coord_flip()+
+  labs(title="Sentiment strength of words",
+       y="Sentiment", 
+       x="Word", 
+       caption="Source: Produkttest dataset")
+
+```
+
+Now, for each participant we calculate the average sentiment value. To do this, we have to rejoin the tokenized dataset with the original dataset, so that we have the participant number (id) for each word.
+
+```{r}
+
+sentiment.perID <- df.sen.G %>% group_by(id) %>%  summarise(sentiment_ger = mean(value)) %>% ungroup()
+
+# Now we can join the sentiment values with the original dataset:
+dataset2_eng <-full_join(dataset2_eng, sentiment.perID, by = "id")
+# You will see that there are "NA" values for the participants who did not use any of the words in the dictionary.
+
+```
+
+## Sentiment, step4 - sentiment analysis with an english dictionary
+
+For the English dictionary, we use the tidytext package. The dictionary is from 
+Minqing Hu and Bing Liu, ``Mining and summarizing customer reviews.'', Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery & Data Mining (KDD-2004), Seattle, Washington, USA, Aug 22-25, 2004.
+
+As a difference to before, we only have a positive or negative rating of words, no value.
+
+```{r}
+require(tidytext)
+#load the pretrained model:
+get_sentiments("bing") #Bing Liu's lexicon
+
+#Now we can use the model to determine the sentiment of each word in the tokenized dataset:
+df.sen.E <- inner_join(get_sentiments("bing"),dataset2.clean.eng,  by =("word"="word"))
+
+# recode positive / negative into 1 / -1
+df.sen.E$value <- ifelse(df.sen.E$sentiment=="positive",1,-1)
+
+# And we calculate the average per ID
+sentiment.perID.E <- df.sen.E %>% group_by(id) %>%  summarise(sentiment_eng = mean(value)) %>% ungroup()
+
+# Now we can join the sentiment values with the original dataset:
+dataset2_eng <-full_join(dataset2_eng, sentiment.perID.E, by = "id")
+# You will see that there are "NA" values for the participants who did not use any of the words in the dictionary.
+
+```
+
+## Sentiment, step5 - save the new dataset for the future
+
+
+```{r}
+#Save it as CSV file, for future use and r exercises:
+write.table(dataset2_eng, file = "ProdukttestWithSentiment.csv", sep=",", dec=".",  row.names = FALSE)
+
+```
+
+done.
+
+
+##summary
+
+We have done a lots of things in this exercise. Let's summarize: 
+
+- We have learned how to plot in various ways
+- We have learned how to recode data
+- We have learned how to clean a dataset (remove stopwords,  remove special characters, etc.)
+- We have learned how to tokenize a dataset (split the text into words), and rund a simple sentiment analysis
+
+I feel like I need a coffee now.
+
+
+# PART 5: Bonus tasks and presentation task
+
+## Bonus task 1: a helpful visualization on the Produkttest dataset
+
+This week, your bonus task is to create a helpful visualization of the new dataset (the one with the sentiment values). You can choose any visualization you like, but it should be helpful to understand the data.
+So: 
+ * Get to know the dataset, the variables, the values. 
+ * You may need to experiment with a view plots to understand the data.
+ * draw inspiration from r graph gallery (https://www.r-graph-gallery.com/)
+ * Then, create a visualization that helps to understand the data. Imagine that some product manager tasked you with running the product test and analysing the data. What would be helpful for them to see? What do you think they want with this test?
+ * Add a subtitle with your name to the diagram
+ * Add the current date as a caption to the graph
+ * Save the visualization as a png image, with a resolution of 300 dpi, and a width of 10 cm, and a height of 10 cm (you can use the ggsave() function for this)
+ * Save the png image under your name ("lastname_firstname_bonus1.png")
+ * upload it to moodle
+ * if you upload a correct graph to moodle before the deadline, you'll get the bonus point
+
+
+
+```{r}
+# create your final plot here
+library(ggplot2)
+
+
+your.plot <- ggplot(dataset2_eng, aes(x = id, y = sentiment_ger)) +
+  geom_bar(stat = "identity", fill = "skyblue") +
+  theme_minimal() +
+  labs(title = "Average Sentiment by Product ID",
+       subtitle = "Your Name",
+       x = "Product ID",
+       y = "Average Sentiment",
+       caption = Sys.Date()) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+ggsave("lastname_firstname_bonus1.png", plot = your.plot, device = "png", dpi = 300, width = 10, height = 10, units = "cm", limitsize = FALSE)
+
+
+
+# save as png
+ggsave("lastname_firstname_bonus1.png", plot = your.plot, device = "png", dpi = 300, width = 10, height = 10, units = "cm", limitsize = FALSE)
+
+
+```
+
+
+
+## Presentation 1 (homework for one of you)
+
+ * You will create a maximum 15 minutes PPT presentation on the product test data, which you will then present in the next lecture; then we can all ask questions.
+ * The premise is that you were tasked with running and analysing the product test and your audience is the company that produces that product (so, think about the SCQA: Situation, Complication, Question, Answer that you want to present)
+ * You can choose any visualization you like, but it should be helpful to understand the data. And show at least three visualizations
+ * Use at least one type of visualization that we have not used in the exercises so far. You may want to search for examples, e.g. here: https://www.r-graph-gallery.com/ or use other packages like sjPlot, plotly, etc.
+ * Be prepared for a lot of "why this?" questions from the audience (or me), so you should be able to explain why you chose this visualization, and what it shows. And perhaps prepare an appendix with additional visualizations that you can show if needed.
+ * Be even prepared for a few "why not something else?" questions. So maybe you can show why this is the best visualization, and why other visualizations are not as good.
+ * Always consider the marking criteria (see below)
+ * send me your PPT file before the lecture where you present, so I can upload it to moodle
+
+## Marking criteria for presentations
+
+ - 1) Situation: What is the situation? What is the problem? what is the complication
+    * presented interestingly and clearly? -> yes, meh, no.
+    * convincing material provided? -> yes, meh, no.
+ - 2) What is the goal? what is the question? what is the answer?
+    * presented interestingly and clearly? -> yes, meh, no.
+    * convincing material provided? -> yes, meh, no.
+-  3) Give an interesting punchline or teaser upfront -> yes, meh, no.
+-  4) What is the data? what is the evidence? 
+    * presented interestingly and clearly? -> yes, meh, no.
+    * convincing material provided? -> yes, meh, no.
+-  5) what is the analysis? what is done? 
+    * presented interestingly and clearly? -> yes, meh, no.
+    * convincing material provided? -> yes, meh, no.
+-  6) what is the result? What is the discussion? what is the outlook? what is the next step?
+    * presented interestingly and clearly? -> yes, meh, no.
+    * convincing material provided? -> yes, meh, no.
+-  7) What are potential issues? What could have gone wrong? What are the limitations?
+    * presented interestingly and clearly? -> yes, meh, no.
+    * convincing material provided? -> yes, meh, no.
+-  8) Can you answer questions? Can you explain your choices? Can you defend your choices?
+    * defended/discussed interestingly and clearly? -> yes, meh, no.
+    * fitting and convincing extra material provided? -> yes, meh, no.
+-  9) Bonus for something to think about/something creative: complex final chart, extra analysis, long-term implications, etc.
+-  10) Bonus for something new/something I haven't seen before:  own analyses (e.g., not from this course), own explorations, other data/information, new methods, etc.
+-  11) Bonus for something fun: funny, interesting, surprising, etc.
+

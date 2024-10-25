@@ -1,0 +1,388 @@
+---
+title: "QuantitativeDatenanalysisAndVisualization24_Rskript_no0"
+author: "Florian Dost"
+date: "13/10/2024"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Congratulations!
+
+You arrived here, therefore you have already accomplished a few critical things:
+ * R installed
+ * R Studio installed
+ * R Studio opened
+ 
+With that, you've mastered the most important first step in becoming a viable "Data Scientist": getting yourself to open a capable piece of software.
+(This is no joke. Opening a statistics software is exactly what the majority of your fellow students in an average business administration course fail at - and later in the company it is no different...)
+
+Now all you have to do is the second big step: constant try-and-error, tinkering, trying many models and experiments, googling for solutions again and again, asking ChatGPT for a suggestion, and developing a feeling for the data and teasing results out of it. 
+One recommendation for using ChatGPT (its really helpful to get started): describe your problem, then add to the prompt "...and provide executable R code. Include code to visualize the result. Comment extensively and explain all steps of the code."
+
+Let's get started.
+
+
+## R Markdown documents
+
+This is our initial introductory exercise in R. It is only for you to get familiar with some of the R specifics like importing, outputting, and handling data. If you know R a bit, you may skip this exercise. The actual tasks (including bonus points and/or presentation homework start with the next exercise document).
+
+For this exercise we use what is called a "Markdown document". This is a mixture of text and R code, and it can also be exported to e.g. Word or html. (Normal R scripts consist only of code).
+
+If you want to export the script, i.e. all script parts will be executed and the results will be written into the created document, then click on the **Knit** button.
+
+Otherwise we go through the document piece by piece within R Studio and execute each partial code with the small **play triangle** (top right in the code part).
+
+Code is started (along with {r}) and ended in Markdown documents by three apostrophes. E.g. like this:
+(push the green play button at the top right corner of the code to execute it)
+
+```{r}
+
+print("Hello world!") #print() is a command for outputting something in R. The hashtag marks a comment in the code.
+
+```
+
+## Defining variables, vectors and data sets
+
+In general, assignments to objects (e.g. variables, vectors, data sets) are made with arrows in R:
+
+```{r}
+x1 <- 4 # Variable x1 now exists. You can see it in the global environment (the top right window in r studio). x has the value 4.
+print(x1) #see?
+
+x2 <- c(5,3,1) #x2 is now a vector (that is just a series of values). It consists of the three values 5, 3, and 1. The basic r-command c() always combines stuff like values or vectors to a new vector. 
+print(x2) #look at it
+```
+
+You can also view the new objects in R Studio in the upper right corner of the Global Environment window.
+
+
+## Import datasets
+
+You can load datasets into R Studio using the "Import" dialog. (Got to "File -> Import Dataset -> From Text (base)" or "From Text (readr)" or "From Excel...").
+
+Or you can use the traditional R code. 
+Note: R Studio needs to know which folder you are working in and where the file should be. You can tell R Studio this using the "Session-> Set working directory" dialog. 
+You can also write the file path directly into the code (e.g. read.csv("~/MyUniFiles/R-Stuff/qkitch.csv", ... )
+
+Now we start to read in the dataset, or only parts of it.
+Here we load the file qkitch.csv 
+
+```{r}
+
+dataset1 <- read.csv("qkitch.csv", sep=",", dec=".") #We read the CSV file and write it into the object "dataset1". 
+
+#A note to all German students: This is an "English" formatted file, i.e. decimal numbers have dots. For this we specify the reading with dec =".". 
+#Generally, in English the decimal is a "." and the thousands separator is a ",". In German it is the other way around. 
+
+#If the opening did not work, then R probably does not know where (file path) to look for the file. Tell R Studio with the "Session-> Set working directory" dialog. Alternatively, you can also write the file path directly into the code (e.g. read.csv("~/MyUniFiles/R-Stuff/qkitch.csv", ... )
+```
+
+
+Take a look at the object "dataset1" once in the "Global Environment".
+Alternatively, you can print it with print(dataset1). Or, more comfortable, you use the "View" button in the upper right corner of the Global Environment window. Or you can use the "View" command in the code (View(dataset1)). (you see, R studio always gives you many different options)
+
+```{r}
+View(dataset1) #View() is a command for outputting something in R studio.
+```
+
+
+The qkitch dataset is a dataset of quarterly kitchen appliance sales.
+It has 24 observations (24 quarters, so 6 years) and 8 variables (columns):
+ * sales: the quarterly sales of a kitchen appliance in money.
+ * prom: the quarterly promotional discounts in %.
+ * adv: the quarterly promotional reach in Gross Rating Points (GRP meaning: see below)
+ * index: a quarterly economic sector index (economic situation relative to 100)
+ * q1: quarter 1 (1 in quarter 1, 0 otherwise)
+ * q2: quarter 2 
+ * q3: quarter 3 
+ * q4: quarter 4 
+ 
+(Small digression: Gross rating points are a unit of measurement for advertising pressure. 100 GRP means that 100% of the target group in a market got to see the ad once, or 50% got to see it twice, or 20% got to seet it five times, ... you get the idea, i hope. A really big Coca-Cola advertising campaign in all of Germany would have up to 350 GRP in one quarter)
+
+Another important lesson on dataformatting: q1, q2 , q3 and q4 are so-called dummy-variable. They can take only the values 1 or zero. This works like a switch: 1 in q1 means "quarter 1", 0 means "not quarter 1). I strongly recommend to use dummy variables for data that can only be true/on or not/off. And please always code them using 1/0 values. (In R you can also use TRUE/FALSE, but this is not recommended. It is not as clear as 1/0 and it can lead to problems in some functions.)
+
+
+## Selecting parts of datasets
+
+Now we define new objects from the dataset, which consist only of parts (e.g. single variables or single cases) of the dataset. 
+Generally, we use the brackets [row,column] to select parts of a dataset. 
+We use the $ to select a named column of a dataset.
+
+```{r}
+#Here you could try to output variable x6 once yourself:
+x3 <- dataset1 #now x3 is exactly the same dataset as dataset1
+
+x4 <- dataset1$sales #x4 consists only of the sales variable of the dataset1
+
+x5 <- dataset1[,1] #x5 also consists only of the sales variable. This is because the brackets - [row,column] - were used to select the first column (here: Sales) in the dataset.
+
+x6 <- dataset1[1:10,1] # x6 takes only the first 10 rows (1:10 means 1 to 10) of the variable (column 1) from the dataset
+
+
+```
+Take a look at the objects once in the "Global Environment".
+
+Alternatively you can print all objects with print(). Or view them with View().
+
+
+
+```{r}
+#Here you could try to print variable x6 once yourself:
+#Your code...?
+
+
+#And here you could assign variable x7 fifteen observations, starting with the third observation, of the sales variable from the dataset:
+# Your code...?
+
+
+```
+Is your last value of x7 equal to 433.86? 
+If not, then you did something wrong. Try again. Ask ChatGPT to debug your code. Google. Really, the important thing for any aspiring data analysit is to tinker and never give up. You will get there.
+
+
+# Random numbers, selecting random samples
+
+Often you want to select a random sample from a dataset. Or you want to create random numbers in a vector or dataset. For example to experiment with different sample sizes or to create a random sample of a dataset.
+
+Here are a few important commands for this:
+
+* sample() # Random number of a discrete list.
+* runif() # Random number from a uniform probability distribution
+* rnorm() # Random number from a normal probability distribution
+* dnorm() # Density function of normal distribution
+* qnorm() # Cumulative density of normal distribution (quantile function)
+* pnorm() # distribution function of the normal distribution
+
+correspondingly also:
+* dunif() # density function of the uniform distribution
+* qunif() # cumulative density of the uniform distribution
+
+With this, random generators can be created. Example: 6-sided dice.
+
+```{r}
+# A dice: (based on a discrete random distribution with lay-back, since the numbers can't be "rolled away").
+dice <- sample(1:6,size=1,replace = TRUE) 
+#sample() is the command for random numbers. 1:6 is the list of numbers from which the random number is drawn. size=1 means that only one number is drawn. replace=TRUE means that the number is drawn with replacement, i.e. it can be drawn again. If you want to draw a number without replacement, then you have to set replace=FALSE. Try it out.
+print(dice)
+
+```
+You can roll the dice again once. As with a real dice, a different number can be rolled each time you press the green play button.
+
+
+```{r}
+
+# 500 dice rolls, that looks pretty evenly distributed
+dice <- sample(1:6,size=500,replace = TRUE)
+
+hist(dice)
+#hist() is the command for a histogram. It shows the distribution of the numbers. The more often a number is rolled, the higher the bar in the histogram.
+```
+
+
+As an exercise, try to find a way to roll a cheating dice. A dice that rolls a 6 with a 50% probability, and all other numbers only with a 10% probability. You may ask ChatGPT, or check the help on sample(). Or google. Or try it out. Or all of the above. 
+
+```{r}
+# your code...
+
+
+```
+
+## Random samples from a dataset
+
+Now we want to create a random sample from a dataset. For this we use the sample() command again. But this time we use it to select rows from a dataset. 
+
+```{r}
+# A random sample of 10 observations from the dataset1
+sample1 <- dataset1[sample(1:nrow(dataset1),10,replace=FALSE),]
+# 1:nrow(dataset1) is the list of all row numbers in the dataset. 10 is the number of observations to be drawn. replace=FALSE means that the observations are drawn without replacement, i.e. they can only be drawn once. Try it out.
+```
+
+
+
+#Descriptive Statistics
+
+So, now let's really get started with analyzing the data.
+Let's calculate the descriptive statistics of the sales variable. 
+You may remember your fundamentals statistics or math courses? Means, variances, standard deviations?
+
+The necessary commands in R are:
+
+* min() #the minimum
+* max() #the maximum
+* max()-min() #the range (the difference between the maximum and the minimum)
+* median() #the median
+* mean() #the arithmetic mean (also known as "the average")
+* sd() #the standard deviation
+* var() #the variance
+* quantile() #outputs the quartiles
+
+```{r}
+sales <- dataset1$sales #assigns to a new variable "sales".
+
+print(min(sales)) #outputs the minimum
+print(max(sales)) #correspondingly...
+print(max(sales)-min(sales)) #range
+print(median(sales)) #median
+print(mean(sales)) #arithmetic mean (average)
+print(sd(sales)) #standard deviation
+
+#and here the quartiles
+print(quantile(sales))
+
+```
+Let's do it again for another variable. Let's take the advertising variable this time. And let's improve the output a bit.
+
+
+```{r}
+# we now use paste(). This is similar to print, but can output several things at once. A comma separates the individual outputs.
+
+paste("Minimum:",min(dataset1$adv)) #outputs the minimum
+paste("Maximum:",max(dataset1$adv)) #correspondingly...
+paste("Range:",max(dataset1$adv)-min(dataset1$adv)) #range
+paste("Median:",median(dataset1$adv)) #median
+paste("Mean:",mean(dataset1$adv)) #arithmetic mean (average)
+paste("SD:",sd(dataset1$adv)) #standard deviation
+
+#and here the quartiles
+print(quantile(dataset1$adv))
+
+```
+
+
+
+Now it's your turn. Can you print the descriptives of the second variable (the promotion measures: prom)?
+
+```{r}
+# Here is space for your code
+
+
+
+
+```
+
+OK.
+
+
+I have withheld something from you. Try the summary() function with your promotion variable...
+
+```{r}
+# Here is space for your code
+
+summary(sales)
+
+
+print("only the SD is missing...")
+
+```
+
+As you can see, there are also commands that give us a lot of descriptives right away. summary() is one of them. It gives us the minimum, the maximum, the median, the mean, and the quartiles. But it doesn't give us the standard deviation.
+
+There is another command that gives us a lot of descriptives at once. It's called describe(). But it's not a standard command in R. It's part of the psych package. We'll get to that in a moment.
+
+
+## Descriptives with the psych package
+
+
+
+The really cool thing about R is the use of packages. This makes the functionality of R potentially unlimited.
+
+Let's load the package "psych". This is a package with commonly used functions for psychological studies, as well as consumer behavior and market research datasets.
+
+So we load the package:
+
+```{r echo=FALSE}
+if(!require(psych)){install.packages("psych")} #We download and install the package, if we haven't already done so
+library(psych) #We load the package, otherwise R does not know the psych commands
+
+```
+
+With this package we can run the new describe() command.
+Let's try it for the sales variable:
+
+
+```{r}
+describe(sales, fast=TRUE) #fast=TRUE means that we only get the most important descriptives
+
+
+```
+This looks much clearer. Here we have the sample size n, the mean mean, the standard deviation sd, min, max and range, and the standard error se (comes later in the lecture...).
+
+And so we can apply the command to the first four variables in the data set:
+
+```{r}
+
+describe(dataset1[,1:4], fast=TRUE)
+
+```
+
+
+
+Now it's your turn. Try describe() once with only thepromotion variable prom, and once with the whole dataset:
+
+```{r}
+#There is room for your code
+
+#Do you want to use describe() once on the whole dataset?
+
+```
+
+
+# Final exercise for this introduction: Using the tidyverse package
+
+The tidyverse package is a collection of packages that make data analysis easier. It is a very popular package, and you will find many tutorials on the internet. We will use it in this course as well.
+
+Let's load the package:
+
+```{r echo=FALSE}
+if(!require(tidyverse)){install.packages("tidyverse")} #We download and install the package, if we haven't already done so
+library(tidyverse) #We load the package, otherwise R does not know the tidyverse commands
+
+```
+
+The tidyverse includes a few nice packages such as ggplot (which we will use in the next r script) and dplyr, which we will use now as a convenient way to calculate descriptives, or organise data.
+
+For calculating the descriptives with tidyverse, we use the summarise() command. It works like this:
+
+```{r}
+dataset1 %>% summarise(mean(sales), sd(sales), min(sales), max(sales), median(sales))
+# note the %>% sign. It is a pipe operator. It means that the output of the first command is used as input for the second command.
+
+```
+There are a few helpful dplyr commands that we will use in the future. Important are:
+ * select() #selects variables
+ * filter() #filters cases
+ * mutate() #creates new variables
+ * arrange() #sorts cases
+ * group_by() #groups cases, for example to run a summarise() first with all Quarter1 data, then all other data, etc. (always ungroup() afterwards!)
+ 
+Let's run a fun example. We will use the filter() command to filter the dataset for all cases where sales are above 1000, then group the data by quarter, and then calculate the mean sales per quarter:
+
+```{r}
+
+dataset1 %>% mutate(quarter = q1*1+q2*2+q3*3+q4*4) %>% filter(sales>500) %>% group_by(quarter) %>% summarise(mean(sales))
+# mutate() creates a new variable "quarter" that is the sum of the quarters (1,2,3,4) times the quarter variable (0 or 1)
+# filter() filters the dataset for all cases where sales are above 500
+# group_by() groups the data by quarter
+# summarise() calculates the mean sales per quarter
+
+```
+
+
+Now, can you calculate the mean sales per quarter for all cases where sales are below 500?
+
+```{r}
+#your code
+
+
+```
+
+Well done! You have now learned how to calculate descriptives in R, import and change data in R, and hopefully that you will be able to master R as long as you keep on searching, testing, googling, etc. In the next script we will learn how to visualise data.
+
+
+
+
+
+

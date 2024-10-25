@@ -1,0 +1,181 @@
+"id","age","sex","job","education","description","ProductImpression","PurchaseIntention","PurchaseNumeric","PurchaseProbability","descriptionclean","descriptionclean_en","sentiment_ger","sentiment_eng"
+1,25,"Frau","Hausfrau/-mann","Realschule","lecker,aaber nichts für Kinder",5,"wahrscheinlich_nicht",2,0.05,"lecker, aber nichts für Kinder","tasty, but not for children",NA,NA
+2,43,"Frau","Angestellter","Lehre","ich finde es überflüßig",3,"wahrscheinlich_nicht",2,0.05,"ich finde es überflüssig","I find it superfluous",-0.5154,-1
+3,40,"Frau","Angestellter","Lehre","Für Feingeister",4,"unsicher",3,0.1,"Für Feingeister","For foodies",NA,NA
+4,35,"Frau","Angestellter","Realschule","Ein leckerer Zusatz für viele Rezepte",7,"wahrscheinlich",4,0.25,"Ein leckerer Zusatz für viele Rezepte","A delicious addition to many recipes",NA,1
+5,37,"Frau","Hausfrau/-mann","Berufsakademie","vielfältig einzigartig bietet viele Anwendungsmöglichkeiten!!",7,"ja",5,0.75,"vielfältig einzigartig bietet viele Anwendungsmöglichkeiten!!","versatile unique offers many applications!!!",0.1559,1
+6,31,"Frau","Arbeiter","Mittlere Reife","Es ist ein wenig sauer, was man auf den ersten Blick gar nicht vermuten würde. Von der Konsistenz ist es eher flüssig. Die Anwendung ist einfach und der Sirup ist vielseitig einsetzbar.",6,"unsicher",3,0.1,"Es ist ein wenig sauer, was man auf den ersten Blick gar nicht vermuten würde. Von der Konsistenz ist es eher flüssig. Die Anwendung ist einfach und der Sirup ist vielseitig einsetzbar.","It is a little sour, which you would not suspect at first glance. From the consistency it is rather liquid. The application is easy and the syrup is versatile.",0.07945,0
+7,26,"Herr","Student","Fachhochschule","verfeinern, dekorieren, Farbe, Granatapfel",6,"wahrscheinlich",4,0.25,"verfeinern, dekorieren, Farbe, Granatapfel","refine, decorate, color, pomegranate",0.004,1
+8,43,"Frau","Angestellter","Lehre","Eine ungewöhnliche Geschmacksrichtung, bei der ich erstmalnachdenken musste, um sie in meine Kochgewohnheiten einzubeziehen.",4,"wahrscheinlich_nicht",2,0.05,"Eine ungewöhnliche Geschmacksrichtung, bei der ich erstmal nachdenken musste, um sie in meine Kochgewohnheiten einzubeziehen.","An unusual flavor that took some thought for me to incorporate into my cooking habits.",NA,-1
+9,33,"Frau","Angestellter","Fachgebundene Hochschulreife","mal was anderes",4,"nein",1,0.01,"mal was anderes","something different",NA,NA
+10,44,"Frau","Selbständig","Lehre","Etwas vollkommen neues auch vom geschmack her,sehr vielseitig einsetzbar gut dosierbar,verleiht allen Speisen eine spezielle Note auch schon farblich und optisch ich bin begeistert",6,"wahrscheinlich",4,0.25,"Etwas vollkommen neues auch vom Geschmack her,sehr vielseitig einsetzbar gut dosierbar,verleiht allen Speisen eine spezielle Note auch schon farblich und optisch ich bin begeistert","Something completely new also from the taste,very versatile can be used well dosed,gives all dishes a special touch also already colored and visually I am thrilled",0.187266666666667,1
+11,29,"Frau","Hausfrau/-mann","Grund-/Haupt-/Volksschule","Also das produkt ist lecker aber es ist für mihc sehr schwer was zu finden wozu man es benutzen kann.",4,"unsicher",3,0.1,"Also das Produkt ist lecker aber es ist für mich sehr schwer was zu finden wozu man es benutzen kann.","So the product is delicious but it is very difficult for me to find what to use it for.",-0.0048,0
+12,25,"Frau","Student","Abitur (Matura)","Das Produkt hat mir nicht gefallen.",3,"nein",1,0.01,"Das Produkt hat mir nicht gefallen.","I did not like the product.",0.2578,1
+13,35,"Frau","Angestellter","Abitur (Matura)","vielseitig einsetzbar. Außergewöhnlicher Geschmack. experimentierfreudig sein",6,"unsicher",3,0.1,"vielseitig einsetzbar. Außergewöhnlicher Geschmack. experimentierfreudig sein","versatile. Exceptional taste. be willing to experiment",0.0957,1
+14,44,"Frau","Arbeitslos","Lehre","produkt ist lecker und vielseitig verwendbar",6,"wahrscheinlich",4,0.25,"Produkt ist lecker und vielseitig verwendbar","Product is delicious and versatile.",0.0908,1
+15,29,"Frau","Angestellter","Abitur (Matura)","färbt schön rot. nicht für süße Gerichte geeingnet.",4,"wahrscheinlich_nicht",2,0.05,"färbt schön rot. nicht für süße Gerichte geeingnet.","colors beautifully red. not suitable for sweet dishes.",0.0081,1
+16,31,"Frau","Angestellter","Fachhochschule","Sehr unschlüssig, ob ich dieses Produkt je kaufen werde.",4,"wahrscheinlich_nicht",2,0.05,"Sehr unschlüssig, ob ich dieses Produkt je kaufen werde.","Very undecided if I will ever buy this product.",NA,-1
+17,43,"Frau","Angestellter","Mittlere Reife","Neu, tolle Konsitenz, anderer Geschmack, tolle Farbe",5,"unsicher",3,0.1,"Neu, tolle Konsitenz, anderer Geschmack, tolle Farbe","New, great consistency, different taste, great color",0.004,1
+18,25,"Frau","Auszubildender","Fachgebundene Hochschulreife","Wahnsinns Geschmack!",7,"ja",5,0.75,"Wahnsinns Geschmack!","Awesome taste!",NA,1
+19,29,"Frau","Angestellter","Mittlere Reife","Der BRAND Sirup ist eine kleine Küchenfee. 
+Keine zig Flaschen mehr sondern ein Produkt, dass man für Desserts, Cocktails aber auch deftige Produkte verwenden kann. ",6,"wahrscheinlich",4,0.25,"Der BRAND Sirup ist eine kleine Küchenfee. 
+Keine zig Flaschen mehr sondern ein Produkt, dass man für Desserts, Cocktails aber auch deftige Produkte verwenden kann. ","The BRAND syrup is a little kitchen fairy. 
+No more umpteen bottles but a product you can use for desserts, cocktails but also hearty products. ",NA,NA
+20,40,"Frau","Angestellter","Fachgebundene Hochschulreife","Sehr lecker und vielseitig einsetzbar",6,"wahrscheinlich",4,0.25,"Sehr lecker und vielseitig einsetzbar","Very tasty and versatile to use",0.0957,1
+21,32,"Frau","Sonstiges","Lehre","Es hat einen tollen Geschmack, süß und säuerlich, ist eine tolle Kombination und verweinert so toll die Gerichte. Egal ob als Deko oder darunter gemischt. Herlich
+",6,"unsicher",3,0.1,"Es hat einen tollen Geschmack, süß und säuerlich, ist eine tolle Kombination und verfeinert so toll die Gerichte. Egal ob als Deko oder darunter gemischt. Herrlich
+","It has a great taste, sweet and sour, is a great combination and refines so great the dishes. Whether used as a decoration or mixed in. Delightful
+",0.4501,0.666666666666667
+22,31,"Frau","Hausfrau/-mann","Mittlere Reife","-Sirup
+-schmeckt gut
+-toll als Deko geeignet",6,"wahrscheinlich",4,0.25,"-Sirup
+-schmeckt gut
+-toll als Deko geeignet","-Syrup
+-tastes good
+-great as a decoration suitable",0.3252,1
+23,30,"Frau","Beamter","Realschule","Der Geschmack ist frisch und mal etwas anderes, als das übliche 'Alltagszeug'. Und es ist vielseitig einsetzbar.",6,"wahrscheinlich",4,0.25,"Der Geschmack ist frisch und mal etwas anderes, als das übliche 'Alltagszeug'. Und es ist vielseitig einsetzbar.","The taste is fresh and something different than the usual 'everyday stuff'. And it's versatile.",0.0957,1
+24,30,"Frau","Angestellter","Lehre","Brauch ich nicht.",4,"wahrscheinlich_nicht",2,0.05,"Brauch ich nicht.","Don't need it.",NA,NA
+25,29,"Herr","Student","Abitur (Matura)","Tolles, leckeres und interessantes Multifunktions-Nahrungsergänzungsmittel! ",6,"wahrscheinlich",4,0.25,"Tolles, leckeres und interessantes Multifunktions-Nahrungsergänzungsmittel! ","Great, tasty and interesting multifunctional food supplement! ",NA,1
+26,35,"Frau","Hausfrau/-mann","Berufsakademie","Super zum verfeinern",6,"ja",5,0.75,"Super zum verfeinern","Super for refining",0.2526,1
+27,30,"Frau","Angestellter","Universität","rote Glut, etwas sauer",5,"unsicher",3,0.1,"rote Glut, etwas sauer","red glow, a little sour",-0.0048,0
+28,40,"Frau","Angestellter","Lehre","ein tolles geschmackserlebnis",6,"wahrscheinlich",4,0.25,"ein tolles Geschmackserlebnis","a great taste experience",NA,1
+29,28,"Frau","Angestellter","Lehre","Ungewöhnliches Produkt, aber vielseitig einsetzbar und lecker.",7,"ja",5,0.75,"Ungewöhnliches Produkt, aber vielseitig einsetzbar und lecker.","Unusual product, but versatile and delicious.",0.0957,0.333333333333333
+30,37,"Herr","Auszubildender","Fachgebundene Hochschulreife","Sehr lecker, perfekt zu dosieren, leicht süß, leicht sauer, pur und in Kombination ein Genuss, schönes rot, tolle Konsistenz",7,"ja",5,0.75,"Sehr lecker, perfekt zu dosieren, leicht süß, leicht sauer, pur und in Kombination ein Genuss, schönes rot, tolle Konsistenz","Very tasty, perfect to dose, slightly sweet, slightly sour, pure and in combination a pleasure, beautiful red, great consistency",0.21894,0.714285714285714
+31,40,"Frau","Angestellter","Lehre","lecker, vielseitig, gut zu verarbeiten",6,"wahrscheinlich",4,0.25,"lecker, vielseitig, gut zu verarbeiten","tasty, versatile, good to work with",0.23365,1
+32,32,"Frau","Angestellter","Universität","vielseitig, außergewöhnlich, fruchtig",5,"wahrscheinlich",4,0.25,"vielseitig, außergewöhnlich, fruchtig","versatile, exceptional, fruity",0.2176,1
+33,33,"Frau","Angestellter","Fachhochschule","immernoch zu sauer",6,"wahrscheinlich_nicht",2,0.05,"immer noch zu sauer","still too sour",-0.0048,-1
+34,29,"Frau","Angestellter","Lehre","Lecker, vielseitig einsetztbar und Interesantes Aussehen",6,"wahrscheinlich",4,0.25,"Lecker, vielseitig einsetzbar und interessantes Aussehen","Tasty, versatile and interesting look",0.0957,1
+35,32,"Frau","Arbeiter","Lehre","Ein interessanter Versuch",5,"wahrscheinlich",4,0.25,"Ein interessanter Versuch","An interesting attempt",NA,1
+36,29,"Frau","Angestellter","Mittlere Reife","Es ist/war total neu für mich...ich finde es klasse....es ist sehr sauer....und ich würds mir kaufen. :-)",7,"ja",5,0.75,"Es ist/war total neu für mich...ich finde es klasse....es ist sehr sauer....und ich würds mir kaufen. :-)","It is/was totally new to me...I think it's great....it's very sour....and I would buy it. :-)",0.115533333333333,0
+37,32,"Frau","Angestellter","Abitur (Matura)","SUPERLECKER... besonders im Sekt :)",6,"wahrscheinlich",4,0.25,"super lecker... besonders im Sekt :)","super tasty... especially in sparkling wine :)",0.52015,1
+38,42,"Frau","Hausfrau/-mann","Lehre","Ein tolles und vor allem neues und vielseitiges Produkt. Man kann viel damit herumexperimentieren.",7,"ja",5,0.75,"Ein tolles und vor allem neues und vielseitiges Produkt. Man kann viel damit herumexperimentieren.","A great and especially new and versatile product. You can experiment a lot with it.",NA,1
+39,31,"Frau","Angestellter","Lehre","süß sauer",6,"unsicher",3,0.1,"süß sauer","sweet and sour",0.1784,0
+40,33,"Frau","Arbeiter","Realschule","Lecker, individuell, mehrseitig Anwendbar, einfach in der Anwendung, neuwertig, top Produkt!",7,"ja",5,0.75,"Lecker, individuell, mehrseitig Anwendbar, einfach in der Anwendung, neuwertig, top Produkt!","Tasty, individual, multi-purpose, easy to use, as new, top product!",0.108866666666667,1
+41,28,"Frau","Angestellter","Lehre","Das Produkt ist sehr vielseitig einsetzbar, man kann es also mit vielen verschiedenen Gerichten und auch Getränken kombinieren. Das schöne ist, dass die Konsistenz je nach Lagerung (Kühlschrank oder Küchenschrank) unterschiedlich ist.
+
+Das Produkt ist alltäglich einsetzbar. Sehr schön ist auch die knallige Farbe.",6,"wahrscheinlich",4,0.25,"Das Produkt ist sehr vielseitig einsetzbar, man kann es also mit vielen verschiedenen Gerichten und auch Getränken kombinieren. Das schöne ist, dass die Konsistenz je nach Lagerung (Kühlschrank oder Küchenschrank) unterschiedlich ist.
+
+Das Produkt ist alltäglich einsetzbar. Sehr schön ist auch die knallige Farbe.","The product is very versatile, so you can combine it with many different dishes and also drinks. The nice thing is that the consistency varies depending on the storage (refrigerator or kitchen cabinet).
+
+The product can be used on an everyday basis. Very nice is also the bright color.",0.0519,1
+42,38,"Frau","Angestellter","Abitur (Matura)","Lecker, sauer, fruchtig, spritzig",7,"wahrscheinlich",4,0.25,"Lecker, sauer, fruchtig, spritzig","Delicious, sour, fruity, tangy.",-0.0048,0
+43,37,"Frau","Beamter","Universität","Mal was ganz neues, sehr vielseitig",6,"wahrscheinlich",4,0.25,"Mal was ganz neues, sehr vielseitig","Something new for a change, very versatile",0.0957,1
+44,41,"Frau","Arbeiter","Lehre","super projekt, das ist echt eine tolle sache etwas geheimes zu testen",7,"ja",5,0.75,"super projekt, das ist echt eine tolle sache etwas geheimes zu testen","super project, this is really a great thing to test something secret",0.5012,1
+45,28,"Herr","Angestellter","Lehre","mir fällt gerade kein anderes produkt ein, das so viel seitig einsetztbar ist wie dieses.",7,"wahrscheinlich",4,0.25,"mir fällt gerade kein anderes Produkt ein, das so vielseitig einsetzbar ist wie dieses.","I can't think of any other product right now that is as versatile as this one.",0.0957,1
+46,28,"Frau","Arbeitslos","Abitur (Matura)","Naja, ehrlichgesagt: ein Produkt das man nicht unbedingt braucht- hat mich nicht beeindruckt",3,"nein",1,0.01,"Naja, ehrlichgesagt: ein Produkt das man nicht unbedingt braucht- hat mich nicht beeindruckt","Well, to be honest: a product you don't really need- didn't impress me",0.004,1
+47,32,"Frau","Angestellter","Lehre","Wow was für eine Farbe....",7,"ja",5,0.75,"Wow was für eine Farbe....","Wow what a color....",NA,1
+48,25,"Frau","Student","Lehre","Es war ein Produkt mit vielen Möglichkeiten! Lecker!",6,"wahrscheinlich",4,0.25,"Es war ein Produkt mit vielen Möglichkeiten! Lecker!","It was a product with a lot of possibilities! Yummy!",NA,NA
+49,35,"Frau","Angestellter","Mittlere Reife","völlig neu, vielseitig einsetzbar und geschmacklich echt mal was anders",6,"ja",5,0.75,"völlig neu, vielseitig einsetzbar und Geschmacklich echt mal was anders","completely new, versatile and taste really something different",0.04985,1
+50,37,"Frau","Angestellter","Fachhochschule","-",6,"wahrscheinlich",4,0.25,"-","-",NA,NA
+51,27,"Frau","Student","Abitur (Matura)","Ich mag sauer =)",5,"wahrscheinlich",4,0.25,"Ich mag sauer =)","I like sour =)",-0.0048,0
+52,39,"Frau","Angestellter","Realschule","fruchtig, frisch - vielseitig einsetzbar ",6,"wahrscheinlich",4,0.25,"fruchtig, frisch - vielseitig einsetzbar ","fruity, fresh - versatile ",0.0957,1
+53,38,"Frau","Hausfrau/-mann","Fachgebundene Hochschulreife","Eignet sich mehr als Sauce zu eis oder obstkreationen. Zu Fleisch oder Gemüse muss schon eher ein Abenteuererprobter Gaumen her;-)",6,"unsicher",3,0.1,"Eignet sich mehr als Sauce zu eis oder obstkreationen. Zu Fleisch oder Gemüse muss schon eher ein Abenteuererprobter Gaumen her;-)","Suitable more as a sauce for ice cream or fruit creations. To meat or vegetables must be more adventurous palate;-)",NA,1
+54,36,"Herr","Hausfrau/-mann","Fachgebundene Hochschulreife","Neu...einzigartig....verlangen nach Experimentieren",6,"wahrscheinlich",4,0.25,"Neu...einzigartig....verlangen nach Experimentieren","New...unique....require experimentation",0.1559,NA
+55,35,"Frau","Angestellter","Lehre","Lecker, interessant ",5,"unsicher",3,0.1,"Lecker, interessant ","Tasty, interesting ",0.2488,1
+56,38,"Herr","Angestellter","Abitur (Matura)","Ist sehr innovativ, schmeckt sehr gut und macht spass damit zu arbeiten. Lecker",7,"ja",5,0.75,"Ist sehr innovativ, schmeckt sehr gut und macht spass damit zu arbeiten. Lecker","Is very innovative, tastes very good and fun to work with. Delicious",0.3509,1
+57,29,"Frau","Angestellter","Lehre","Aufregend was neues zu probieren, vielfältige Möglichkeiten der Verwendung..wir haben viel probiert mal mit mehr mal mit weniger erfolg",6,"ja",5,0.75,"Aufregend was neues zu probieren, vielfältige Möglichkeiten der Verwendung..wir haben viel probiert mal mit mehr mal mit weniger erfolg","Exciting to try something new, diverse possibilities of use..we have tried a lot sometimes with more sometimes with less success",NA,1
+58,41,"Frau","Angestellter","Abitur (Matura)","Fruchtig, frisch und vielfältig...",7,"wahrscheinlich",4,0.25,"Fruchtig, frisch und vielfältig...","Fruity, fresh and versatile...",0.004,1
+59,32,"Frau","Arbeiter","Abitur (Matura)","etwas zum verfeinern von süßem und getränken",6,"wahrscheinlich",4,0.25,"etwas zum verfeinern von süßem und getränken","something to refine sweets and drinks",0.004,1
+60,30,"Frau","Angestellter","Lehre","Sehr vielseitig einsetzbar",5,"unsicher",3,0.1,"Sehr vielseitig einsetzbar","Very versatile to use",0.0957,1
+61,25,"Frau","Angestellter","Abitur (Matura)","pinkes Würzwunder",5,"nein",1,0.01,"pinkes Würzwunder","pink spice wonder",NA,1
+62,36,"Frau","Hausfrau/-mann","Mittlere Reife","Tolle Farbe sehr vielfältig verwendbar",5,"unsicher",3,0.1,"Tolle Farbe sehr vielfältig verwendbar","Great color very versatile to use",0.04495,1
+63,28,"Frau","Angestellter","Abitur (Matura)","Einzigartig und fruchtig",7,"ja",5,0.75,"Einzigartig und fruchtig","Unique and fruity",0.3078,NA
+64,32,"Herr","Angestellter","Fachgebundene Hochschulreife","Hammer Produkt, würde ich ohne Azo-Farbstoffe sofort kaufen.",6,"ja",5,0.75,"Hammer Produkt, würde ich ohne Azo-Farbstoffe sofort kaufen.","Hammer product, I would buy in a heartbeat without azo dyes.",NA,NA
+65,33,"Herr","Selbständig","Fachgebundene Hochschulreife","Gute Idee, viele Möglichkeiten, noch nicht Marktreif!",6,"wahrscheinlich_nicht",2,0.05,"Gute Idee, viele Möglichkeiten, noch nicht Marktreif!","Good idea, lots of possibilities, not ready for market yet!",NA,1
+66,39,"Frau","Hausfrau/-mann","Berufsakademie","Ein recht langweiliges und überflüssiges Produkt.",2,"nein",1,0.01,"Ein recht langweiliges und überflüssiges Produkt.","Quite a boring and superfluous product.",NA,-1
+67,35,"Frau","Angestellter","Universität","Interessante Zusatzmöglichkeit als Balsamico, zum Speisenfärben und für Marinaden",5,"wahrscheinlich",4,0.25,"Interessante Zusatzmöglichkeit als Balsamico, zum Speisenfärben und für Marinaden","Interesting additive option as balsamic, for food coloring and marinades",NA,1
+68,29,"Frau","Angestellter","Mittlere Reife","unglaublich wie vielseitig der BRAND sirup ist",7,"ja",5,0.75,"unglaublich wie vielseitig der BRAND sirup ist","incredible how versatile the BRAND syrup is",0.23275,1
+69,32,"Frau","Angestellter","Abitur (Matura)","sehr interessant und abwechslungsreich",6,"unsicher",3,0.1,"sehr interessant und abwechslungsreich","very interesting and varied",0.41425,1
+70,25,"Frau","Student","Abitur (Matura)","fruchtig sauer
+rosa
+lecker",6,"unsicher",3,0.1,"fruchtig sauer
+rosa
+lecker","fruity sour
+pink
+delicious",-0.0048,0
+71,31,"Frau","Angestellter","Abitur (Matura)","Klasse Geschmack!",7,"wahrscheinlich",4,0.25,"Klasse Geschmack!","great taste!",0.3474,1
+72,29,"Frau","Angestellter","Lehre","Super zum verfeinern, verzieren und wuerzen von gerichten",6,"unsicher",3,0.1,"Super zum verfeinern, verzieren und wuerzen von gerichten","Super to refine, decorate and season dishes",0.2526,1
+73,45,"Herr","Angestellter","Lehre","immer noch nichts",2,"unsicher",3,0.1,"immer noch nichts","still nothing",NA,NA
+74,33,"Frau","Angestellter","Lehre","lecker - hauch von etwas besonderem",7,"ja",5,0.75,"lecker - hauch von etwas besonderem","delicious - touch of something special",NA,1
+75,36,"Herr","Angestellter","Fachgebundene Hochschulreife","einfach lecker",6,"wahrscheinlich",4,0.25,"einfach lecker","simply delicious",0.004,1
+76,30,"Frau","Angestellter","Lehre","Es schmeckt sehr gut",7,"ja",5,0.75,"Es schmeckt sehr gut","It tastes very good",0.3716,1
+77,32,"Frau","Hausfrau/-mann","Lehre","sauer",2,"nein",1,0.01,"sauer","sour",-0.0048,-1
+78,35,"Frau","Angestellter","Realschule","leckerrr, viele Verwendungsmöglichkeiten",6,"wahrscheinlich",4,0.25,"lecker, viele Verwendungsmöglichkeiten","delicious, many possible uses",NA,1
+79,38,"Herr","Selbständig","Abitur (Matura)","rot",5,"unsicher",3,0.1,"rot","red",NA,NA
+80,34,"Frau","Angestellter","Lehre","dunkle Glasflasche süßsaurer Geschmack ziemlich dolles rot",5,"wahrscheinlich_nicht",2,0.05,"dunkle Glasflasche süßsaurer Geschmack ziemlich dolles rot","dark glass bottle sweet and sour taste pretty doll red",NA,0
+81,28,"Frau","Angestellter","Lehre","lecker und vielsietig einsetzbar",6,"wahrscheinlich",4,0.25,"lecker und vielsietig einsetzbar","tasty and many uses",NA,NA
+82,25,"Herr","Angestellter","Lehre","der Geschmack",6,"wahrscheinlich",4,0.25,"der Geschmack","the taste",NA,NA
+83,30,"Herr","Arbeiter","Mittlere Reife","leicht saurer sirup",3,"wahrscheinlich_nicht",2,0.05,"leicht saurer sirup","slightly sour syrup",0.004,-1
+84,43,"Frau","Angestellter","Mittlere Reife","ein Produkt, welches sehr vielseitig einsetzbar ist",6,"ja",5,0.75,"ein Produkt, welches sehr vielseitig einsetzbar ist","a product that is very versatile",0.0957,1
+85,32,"Frau","Angestellter","Lehre","Dressing, Wild, Salat, lecker",6,"wahrscheinlich",4,0.25,"Dressing, Wild, Salat, lecker","dressing, game, salad, delicious",NA,1
+86,41,"Frau","Beamter","Universität","Lecker dicke süß saure Soße",7,"ja",5,0.75,"Lecker dicke süß saure Soße","Delicious thick sweet and sour sauce",0.3616,0.333333333333333
+87,26,"Frau","Angestellter","Grund-/Haupt-/Volksschule","Fruchtig, würzig und hat eine super Farbe",6,"unsicher",3,0.1,"Fruchtig, würzig und hat eine super Farbe","Fruity, spicy and has a super color",0.5012,1
+88,26,"Herr","Student","Universität","Leckere Salatidee!",6,"unsicher",3,0.1,"Leckere Salatidee!","Delicious salad idea!",NA,1
+89,30,"Herr","Beamter","Fachhochschule","Vielseitiges und vor allem leckeres Produkt zur täglichen Verwendung!",6,"wahrscheinlich",4,0.25,"Vielseitiges und vor allem leckeres Produkt zur täglichen Verwendung!","Versatile and especially delicious product to use every day!",NA,1
+90,26,"Frau","Student","Abitur (Matura)","Schönes Produkt, aber zu selten die Möglichkeit, es zu benutzen.",5,"wahrscheinlich_nicht",2,0.05,"Schönes Produkt, aber zu selten die Möglichkeit, es zu benutzen.","Nice product, but too rarely get the chance to use it.",NA,1
+91,28,"Frau","Angestellter","Lehre","Muss ich wieder haben",7,"ja",5,0.75,"Muss ich wieder haben","Must have again",NA,NA
+92,45,"Frau","Hausfrau/-mann","Mittlere Reife","Ich habe ein neues interessantes Produkt kennengelernt, fruchtig, sauer und intensiv rot ",4,"wahrscheinlich_nicht",2,0.05,"Ich habe ein neues interessantes Produkt kennengelernt, fruchtig, sauer und intensiv rot ","I got to know a new interesting product, fruity, sour and intense red ",-4e-04,-0.333333333333333
+93,31,"Herr","Angestellter","Fachhochschule","Ich möchte andere Geschmacksrichtungen ",6,"wahrscheinlich",4,0.25,"Ich möchte andere Geschmacksrichtungen ","I would like other flavors ",NA,1
+94,30,"Frau","Arbeiter","Lehre","Vielseitig einsetzbar, ein Muss in jeder guten Küche. Perfekt für mich.",7,"ja",5,0.75,"Vielseitig einsetzbar, ein Muss in jeder guten Küche. Perfekt für mich.","Versatile, a must in any good kitchen. Perfect for me.",0.4128,1
+95,24,"Frau","Angestellter","Mittlere Reife","ich finde das Produkt interessant, wobei mein Interesse am Anfang etwas mehr da war um zu probieren, da ich jetzt weiß was ich damit machen kann, kann ich es gezielter einsetzen. ",7,"wahrscheinlich",4,0.25,"ich finde das Produkt interessant, wobei mein Interesse am Anfang etwas mehr da war um zu probieren, da ich jetzt weiß was ich damit machen kann, kann ich es gezielter einsetzen. ","I find the product interesting, although my interest was a little more there at the beginning to try, now that I know what I can do with it, I can use it in a more targeted way. ",0.2488,1
+96,41,"Frau","Angestellter","Fachhochschule","Eine super leckere Würzsauce, für alle Menügänge geeignet",6,"wahrscheinlich",4,0.25,"Eine super leckere Würzsauce, für alle Menügänge geeignet","A super tasty seasoning sauce, suitable for all menu courses",0.2993,1
+97,33,"Frau","Hausfrau/-mann","Realschule","Das vielseitigste Produkt was ich kenne",6,"ja",5,0.75,"Das vielseitigste Produkt was ich kenne","The most versatile product I know",NA,1
+98,31,"Frau","Angestellter","Fachgebundene Hochschulreife","Zeit das es auf den Markt kommt",6,"wahrscheinlich",4,0.25,"Zeit das es auf den Markt kommt","Time for it to come on the market",NA,NA
+99,33,"Frau","Angestellter","Fachhochschule","Leckere Innovation, vielseitig anwendbar, für kreative Leute gedacht",7,"wahrscheinlich",4,0.25,"Leckere Innovation, vielseitig anwendbar, für kreative Leute gedacht","Delicious innovation, versatile, meant for creative people",0.0957,1
+100,34,"Frau","Angestellter","Realschule","zu sauer, konsistens toll, farbe toll",5,"nein",1,0.01,"zu sauer, konsistens toll, farbe toll","too sour, consistency great, color great",0.336133333333333,0.333333333333333
+101,29,"Frau","Arbeiter","Lehre","sehr ergiebig, geschmacksverbessung bei getränken...",5,"unsicher",3,0.1,"sehr ergiebig, Geschmacksverbessung bei getränken...","very productive, flavor enhancement in drinks...",0.004,1
+102,41,"Frau","Angestellter","Lehre","Essen, Nachtisch .. ich bekomme Hunger ;-)",5,"wahrscheinlich_nicht",2,0.05,"Essen, Nachtisch .. ich bekomme Hunger ;-)","Food, dessert ... I get hungry ;-)",NA,NA
+103,43,"Herr","Angestellter","Universität","Ein wirklich interessantes Produkt mit vielfältigen Einsatzmöglichkeiten für süßte und deftige Speisen",6,"wahrscheinlich",4,0.25,"Ein wirklich interessantes Produkt mit vielfältigen Einsatzmöglichkeiten für süßte und deftige Speisen","A really interesting product with multiple uses for sweet and savory dishes",NA,1
+104,28,"Frau","Angestellter","Fachgebundene Hochschulreife","Schon allein der Prototyp war toll aufgemacht. Mir hat vor allem die Form der Flasche und auch die Farbe des Sirups gefallen. ",6,"wahrscheinlich",4,0.25,"Schon allein der Prototyp war toll aufgemacht. Mir hat vor allem die Form der Flasche und auch die Farbe des Sirups gefallen. ","Even just the prototype was great presentation. I especially liked the shape of the bottle and also the color of the syrup. ",0.3822,1
+105,43,"Frau","Angestellter","Lehre","Leider für mich nicht sooo interessant und schmackhaft gewesen",4,"nein",1,0.01,"Leider für mich nicht sooo interessant und schmackhaft gewesen","Unfortunately for me not been sooo interesting and tasty",-0.00430000000000001,0
+106,29,"Frau","Angestellter","Mittlere Reife","frischer geschmack super kombinierbar zu vielen süßen sachen",6,"wahrscheinlich",4,0.25,"frischer Geschmack super kombinierbar zu vielen süßen sachen","fresh taste super combinable with many sweet things",0.5012,1
+107,29,"Frau","Hausfrau/-mann","Mittlere Reife","es macht Spass damit zu experemtieren wie man es verwenden kann
+",6,"ja",5,0.75,"es macht Spaß damit zu experemtieren wie man es verwenden kann
+","it's fun to experiment with it as you can use it
+",NA,1
+108,29,"Frau","Angestellter","Berufsakademie","anders und neu
+eine Herausforderung",6,"wahrscheinlich_nicht",2,0.05,"anders und neu
+eine Herausforderung","different and new
+a challenge",0.004,NA
+109,27,"Frau","Selbständig","Abitur (Matura)","interessant, anders, sauer, rot!",4,"wahrscheinlich_nicht",2,0.05,"interessant, anders, sauer, rot!","interesting, different, sour, red!",0.122,0
+110,36,"Frau","Angestellter","Lehre","vielseitig einsetzbar",5,"unsicher",3,0.1,"vielseitig einsetzbar","versatile",0.0957,1
+111,26,"Frau","Angestellter","Mittlere Reife","Super Produkt, was ich mir im Laden sofort wieder kaufen würde.",6,"ja",5,0.75,"Super Produkt, was ich mir im Laden sofort wieder kaufen würde.","Super product, which I would buy again immediately in the store.",0.5012,1
+112,31,"Frau","Angestellter","Universität","bitte möglichst schnell auf den Markt bringen!
+",7,"ja",5,0.75,"bitte möglichst schnell auf den Markt bringen!
+","please bring to market as soon as possible!
+",0.1169,NA
+113,28,"Frau","Angestellter","Lehre","Tolle Farbe, lecker  im geschmack und sehr vielseitig",6,"ja",5,0.75,"Tolle Farbe, lecker  im Geschmack und sehr vielseitig","Great color, delicious taste and very versatile",0.0957,1
+114,26,"Frau","Angestellter","Lehre","schmeckt fruchtig, vielseitig verwendbar",6,"wahrscheinlich",4,0.25,"schmeckt fruchtig, vielseitig verwendbar","Tastes fruity, versatile to use",0.0908,1
+115,45,"Frau","Angestellter","Sonstige","Es hat Spaß gemacht, ihn zu testen",7,"wahrscheinlich",4,0.25,"Es hat Spaß gemacht, ihn zu testen","It was fun to test it",NA,1
+116,38,"Frau","Hausfrau/-mann","Mittlere Reife","Das es für mich icht so toll war",3,"wahrscheinlich_nicht",2,0.05,"Das es für mich nicht so toll war","That it was not so great for me",0.5066,1
+117,38,"Frau","Angestellter","Abitur (Matura)","sehr lecker und überraschend",7,"wahrscheinlich",4,0.25,"sehr lecker und überraschend","very tasty and surprising",0.004,NA
+118,36,"Frau","Hausfrau/-mann","Grund-/Haupt-/Volksschule","vielseitig und ne tolle farbe",7,"ja",5,0.75,"vielseitig und ne tolle farbe","versatile and a great color",0.0957,1
+119,38,"Frau","Angestellter","Lehre","lecker und vielseitig",7,"ja",5,0.75,"lecker und vielseitig","tasty and versatile",0.0957,1
+120,39,"Frau","Hausfrau/-mann","Mittlere Reife","Absolut gute frage, mir persönlich etwas zu sauer, vielfältig einsetzbar",6,"unsicher",3,0.1,"Absolut gute frage, mir persönlich etwas zu sauer, vielfältig einsetzbar","Absolutely good question, a little too sour for me personally, versatile",0.0803333333333333,0.333333333333333
+121,27,"Frau","Hausfrau/-mann","noch keine","Fruchtig frisch",6,"unsicher",3,0.1,"Fruchtig frisch","Fruity fresh",NA,1
+122,39,"Herr","Selbständig","Abitur (Matura)","Schmackhaft, sauer, dickflüssig.",5,"wahrscheinlich",4,0.25,"Schmackhaft, sauer, dickflüssig.","Tasty, sour, thick.",0.1061,-1
+123,33,"Frau","Arbeiter","Realschule","Sauer",3,"nein",1,0.01,"Sauer","Sour",-0.0048,-1
+124,40,"Frau","Angestellter","Mittlere Reife","neues Produkt, kannte ich vorher nicht, würde es das Produkt noch in weiteren Geschmacksrichtungen geben?",7,"wahrscheinlich_nicht",2,0.05,"neues Produkt, kannte ich vorher nicht, würde es das Produkt noch in weiteren Geschmacksrichtungen geben?","new product, didn't know this product before, would it be available in more flavors?",NA,1
+125,31,"Frau","Angestellter","Abitur (Matura)","keine Sosse, dein Dip, nix für Süsses :-(",1,"nein",1,0.01,"keine Soße, kein Dip, nix für Süsses :-(","no sauce, no dip, nix for sweet :-(",NA,1
+126,42,"Frau","Angestellter","Lehre","Getränkesirup",6,"wahrscheinlich",4,0.25,"Getränkesirup","drink syrup",NA,NA
+127,27,"Frau","Angestellter","Lehre","Tolle Farbe",6,"ja",5,0.75,"Tolle Farbe","great color",NA,1
+128,33,"Frau","Hausfrau/-mann","Mittlere Reife","fruchtig frisch geheimnisvoll",6,"unsicher",3,0.1,"fruchtig frisch geheimnisvoll","fruity fresh mysterious",NA,0
+129,31,"Frau","Hausfrau/-mann","Mittlere Reife","Sehr vielseitig ",6,"wahrscheinlich",4,0.25,"Sehr vielseitig ","very versatile ",0.0957,1
+130,43,"Frau","Angestellter","Fachgebundene Hochschulreife","fruchtige, leicht saure Sauce zum verfeinern von süßspeisen, salaten oder käse",7,"wahrscheinlich",4,0.25,"fruchtige, leicht saure Sauce zum verfeinern von süßspeisen, salaten oder käse","fruity, slightly sour sauce to refine sweet dishes, salads or cheese",0.004,0.333333333333333
+131,44,"Herr","Angestellter","Mittlere Reife","ein leckeres Erlebnis und ein geschmackvolles Projekt",7,"ja",5,0.75,"ein leckeres Erlebnis und ein Geschmackvolles Projekt","a delicious experience and a tasty project",NA,1
+132,39,"Frau","Hausfrau/-mann","noch keine","Sehr vielfälltig und super im Geschmack",7,"ja",5,0.75,"Sehr vielfälltig und super im Geschmack","Very versatile and great taste",0.5012,1
+133,31,"Frau","Angestellter","Mittlere Reife","Ich muss als erstes dazu sagen das ich mit meinem Sohn 2 Wochen im Krankenhaus lag und das Produkt nicht so testen konnte wie ich es gerne hätte. Aber ich finde die Farbe sehr ansprechend und der Geschmack ist mal was anderes.",7,"unsicher",3,0.1,"Ich muss als erstes dazu sagen das ich mit meinem Sohn 2 Wochen im Krankenhaus lag und das Produkt nicht so testen konnte wie ich es gerne hätte. Aber ich finde die Farbe sehr ansprechend und der Geschmack ist mal was anderes.","I must first say that I was in the hospital with my son for 2 weeks and could not test the product as I would have liked. But I find the color very appealing and the taste is something different.",0.3382,1
+134,41,"Frau","Hausfrau/-mann","Abitur (Matura)","Gut zu herzhaften und süßen Gerichten.",5,"wahrscheinlich_nicht",2,0.05,"Gut zu herzhaften und süßen Gerichten.","Good with savory and sweet dishes.",0.3716,1
+135,31,"Frau","Angestellter","Abitur (Matura)","exotisch, fruchtig, lecker",5,"unsicher",3,0.1,"exotisch, fruchtig, lecker","exotic, fruity, delicious",0.1944,1
+136,29,"Frau","Selbständig","Realschule","Leckeres ,neues zum experimentieren einladenes PRodukt",7,"ja",5,0.75,"Leckeres ,neues zum experimentieren einladenes Produkt","Tasty ,new product inviting to experiment.",NA,NA
+137,32,"Frau","Angestellter","Abitur (Matura)","Ich muss ehrlich sagen: ich hatte es im Supermarkt nicht gekauft. Weil die Flasche so unschön ist und weil ich mir nichts drunter vorstellen konnte... Aber das Produkt hat mich überzeugt! Innovativ und vielseitig! Jetzt noch eine entsprechende Verpackung und es wird ein Erfolg!",4,"unsicher",3,0.1,"Ich muss ehrlich sagen: ich hatte es im Supermarkt nicht gekauft. Weil die Flasche so unschön ist und weil ich mir nichts drunter vorstellen konnte... Aber das Produkt hat mich überzeugt! Innovativ und vielseitig! Jetzt noch eine entsprechende Verpackung und es wird ein Erfolg!","I have to be honest: I had not bought it in the supermarket. Because the bottle is so unattractive and because I could not imagine anything under it.... But the product convinced me! Innovative and versatile! Now add appropriate packaging and it will be a success!",0.06732,0.666666666666667
+138,34,"Frau","Hausfrau/-mann","Lehre","es ist super lecker.mag es gerne auf eis",7,"ja",5,0.75,"es ist super lecker.mag es gerne auf eis","it's super tasty.like it on ice cream",0.5012,1
+139,33,"Frau","Angestellter","Realschule","erfrischend neu !",7,"unsicher",3,0.1,"erfrischend neu !","refreshingly new !",0.11335,NA
+140,41,"Frau","Angestellter","Sonstige","ein vielfälliges Produkt das Spaß macht",7,"ja",5,0.75,"ein vielfältiges Produkt das Spaß macht","a versatile product that is fun",NA,1
+141,29,"Frau","Angestellter","Realschule","Fruchtig, süß-sauer, in Verbindung mit süßen Speißen ein Traum, und die Farbe ist auch richtig ansprechend, erinnert an roten Beeren",7,"wahrscheinlich",4,0.25,"Fruchtig, süß-sauer, in Verbindung mit süßen Speisen ein Traum, und die Farbe ist auch richtig ansprechend, erinnert an roten Beeren","Fruity, sweet and sour, in combination with sweet dishes a dream, and the color is also really appealing, reminiscent of red berries",0.17475,0.5
+142,28,"Frau","Angestellter","Fachgebundene Hochschulreife","Hat mich nicht ganz überzeugt
+",3,"wahrscheinlich_nicht",2,0.05,"Hat mich nicht ganz überzeugt
+","Did not quite convince me
+",0.2381,NA
+143,43,"Frau","Arbeiter","Mittlere Reife","Gaumenfreude",7,"ja",5,0.75,"Gaumenfreude","Palate Pleaser",NA,NA
+144,26,"Frau","Student","Universität","Vielfältig einsetzbarer Sirup",5,"nein",1,0.01,"Vielfältig einsetzbarer Sirup","Versatile syrup that can be used in a variety of ways",0.004,1
