@@ -97,8 +97,6 @@ Why don't you give it a try, and use a combination of line and points?
 (type = "b")
 
 ```{r}
-
-# your code
 library(googleLanguageR)
 
 
@@ -146,7 +144,6 @@ But before that, could you create a scatterplot with sales (y) over
 promotional discounts (x)?
 
 ```{r}
-# your code
 ### Scatter plot with plot()
 
 
@@ -177,7 +174,6 @@ sales data.
 How is advertising distributed? Try it out:
 
 ```{r}
-# your code
 
 hist(dataset1$sales, main="Histogram of Sales", xlab="Sales (in MONEY)", ylab="Frequency")
 
